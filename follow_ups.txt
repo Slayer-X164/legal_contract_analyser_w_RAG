@@ -44,26 +44,26 @@ Retrieval (convert query to vector to find similar chunks in vectorDB)
 Response Generator (feed original query + retrieved chunks to LLM for final response)
 """
 
-Step 1 ))
+Step 1 <DONE>
 Make:
 standard_clauses.json
 with:
 20–30 clauses
 
-Step 2 ))
+Step 2 <DONE>
 Learn embeddings ONLY.
 Do:
 text → vector
 for one clause.
 That’s it.
 
-Step 3
+Step 3 <DONE>
 Create Supabase table.
 
-Step 4
+Step 4 <DONE>
 Insert vectors.
 
-ONLY after that:
+ONLY after that: 
 retrieval
 generation
 
