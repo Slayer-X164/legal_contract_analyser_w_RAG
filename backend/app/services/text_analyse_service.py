@@ -2,7 +2,8 @@ from openai import OpenAI
 from app.core.config import settings
 import json
 import re
-
+from app.rag.embed import client as hf_client
+from app.rag.retrieve import retrieve
 client = OpenAI(
     api_key=settings.openrouter_api_key, base_url="https://openrouter.ai/api/v1"
 )
@@ -19,7 +20,7 @@ async def analyse_text(text: str):
       "low":"<exact number of low risk clause>",
       "medium":"<exact number of medium risk clause>",
       "high":"<exact number of high risk clause>"
-    }}
+    }},
     "clauses": [
       {{
         "id": "<unique string like c1, c2>",
@@ -36,7 +37,7 @@ async def analyse_text(text: str):
   {text}"""
 
     response = client.chat.completions.create(
-        model="openai/gpt-oss-120b:free",
+        model="google/gemini-2.5-flash-lite",
         messages=[
             {
                 "role": "system",
@@ -45,14 +46,25 @@ async def analyse_text(text: str):
             {"role": "user", "content": prompt},
         ],
         temperature=0.1,
-        max_tokens=1200,
+        max_tokens=4000,
     )
-    raw = response.choices[0].message.content
+    raw = response.choices[0].message.content.strip()
+    raw = raw.replace("```json", "").replace("```", "").strip()
 
-    match = re.search(r"\{.*\}", raw, re.DOTALL)
+    try:
+      data = json.loads(raw)
+      #from data.clauses extract each medium and high risk clause and embed them
+      for clause in data["clauses"]:
 
-    if not match:
-      raise Exception("No JSON found")
+        if clause["risk"] == "medium" or clause["risk"] == "high":
+          embedding = hf_client.feature_extraction(
+            clause["text"],
+            model="BAAI/bge-small-en-v1.5",
+          )
+          similar_clause_context = retrieve(embedding.tolist())
+          clause["retrieved_context"] = similar_clause_context
 
-    data = json.loads(match.group())
-    return data
+      print(data["clauses"])
+      return data
+    except json.JSONDecodeError as e:
+      raise Exception(f"Invalid JSON returned: {e}")
