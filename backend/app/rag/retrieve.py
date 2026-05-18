@@ -1,5 +1,13 @@
-def retrieve(query_embedding):
+from app.rag.supabase_client import supabase
 
-    results = ""
+def retrieve(user_clause_embedding):
 
-    return results
+    response = supabase.rpc(
+      "match_fair_clauses",
+      {
+        "user_clause_embedding":user_clause_embedding,
+        "match_count":5
+      }
+    ).execute()
+
+    return response.data

@@ -61,8 +61,8 @@ async def analyse_text(text: str):
             clause["text"],
             model="BAAI/bge-small-en-v1.5",
           )
-          similar_clause_context = retrieve(embedding.tolist())
-          clause["retrieved_context"] = similar_clause_context
+          fair_clause_context = retrieve(embedding.tolist())
+          clause["retrieved_context"] = fair_clause_context
 
       print(data["clauses"])
       return data
