@@ -1,12 +1,8 @@
-from openai import OpenAI
-from app.core.config import settings
 import json
-import re
-from app.rag.embed import client as hf_client
 from app.rag.retrieve import retrieve
-client = OpenAI(
-    api_key=settings.openrouter_api_key, base_url="https://openrouter.ai/api/v1"
-)
+from app.rag.generate import generateFairRewrite
+from app.utils.openai_client import client
+
 
 
 async def analyse_text(text: str):
@@ -28,7 +24,6 @@ async def analyse_text(text: str):
         "risk": "<high | medium | low>",
         "category": "<e.g. Termination, IP Ownership, Non-Compete>",
         "reason": "<plain English explanation of why this is risky>",
-        "suggestion": "<a fairer rewrite of this clause>"
       }}
     ]
   }}
@@ -48,23 +43,24 @@ async def analyse_text(text: str):
         temperature=0.1,
         max_tokens=4000,
     )
+
     raw = response.choices[0].message.content.strip()
+    if not raw:
+      raise Exception("Empty LLM response!")
     raw = raw.replace("```json", "").replace("```", "").strip()
 
     try:
-      data = json.loads(raw)
-      #from data.clauses extract each medium and high risk clause and embed them
-      for clause in data["clauses"]:
+        data = json.loads(raw)
+        # from data.clauses extract each medium and high risk clause and embed them
+        for clause in data["clauses"]:
+            if clause["risk"] == "medium" or clause["risk"] == "high":
+                fair_clause_context = await retrieve(clause["text"])
+                fair_rewrite = await generateFairRewrite(clause, fair_clause_context)
+                clause["suggestion"] = fair_rewrite
+            else:
+                clause["suggestion"] = "no rewrite required"
 
-        if clause["risk"] == "medium" or clause["risk"] == "high":
-          embedding = hf_client.feature_extraction(
-            clause["text"],
-            model="BAAI/bge-small-en-v1.5",
-          )
-          fair_clause_context = retrieve(embedding.tolist())
-          clause["retrieved_context"] = fair_clause_context
-
-      print(data["clauses"])
-      return data
+        # print("final data: ",data)
+        return data
     except json.JSONDecodeError as e:
-      raise Exception(f"Invalid JSON returned: {e}")
+        raise Exception(f"Invalid JSON returned: {e}")

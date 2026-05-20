@@ -1,12 +1,7 @@
-from huggingface_hub import InferenceClient
-from app.core.config import settings
 import json
 from app.rag.supabase_client import supabase
+from app.utils.hf_client import client
 
-client = InferenceClient(
-    provider="hf-inference",
-    api_key=settings.hf_token,
-)
 
 with open("app/rag/data/fair_clauses.json", "r") as file:
     fairClauses = json.load(file)
