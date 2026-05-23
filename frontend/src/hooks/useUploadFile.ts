@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useResultStore } from "#/store/useStore";
 import { useNavigate } from "@tanstack/react-router";
-
+import { toast } from "sonner"
 export const useUploadFile = () => {
   const setResult = useResultStore((s) => s.setResult);
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export const useUploadFile = () => {
       });
 
       if (!res.ok) {
+        toast.error(`error:${res.status}, message:${res.statusText}`)
         throw new Error(`HTTP ${res.status}`);
       }
       const data = await res.json();
@@ -24,10 +25,11 @@ export const useUploadFile = () => {
     onSuccess: (data) => {
       setResult(data);
       navigate({ to: "/results" });
+      toast.success("Contract analysed successfully")
     },
 
     onError: (err: any) => {
-      console.error(err.message);
+      toast.error(err.message)
     },
   });
 };
