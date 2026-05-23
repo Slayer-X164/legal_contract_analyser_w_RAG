@@ -6,7 +6,7 @@ import Dark_Light_Switch from "./Dark_Light_Switch"
 
 const Navbar = () => {
   return (
-    <div className='max-w-7xl w-full  flex h-14 justify-between items-center px-2 md:px-4 border-x dark:border-neutral-800 border-neutral-300  relative'>
+    <div className='max-w-7xl w-full  flex h-14 justify-between items-center px-2 md:px-4 border-x dark:border-neutral-800 border-neutral-400/40  relative'>
       <div className='flex items-center gap-2'>
         <Link to="/" className="font-bold">ClauseGaurd</Link>
         <h3 className="px-2 py-1 text-sm rounded-sm bg-blue-600/20 text-blue-700">beta</h3>

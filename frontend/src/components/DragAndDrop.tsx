@@ -44,7 +44,7 @@ const DragAndDrop = () => {
     <>
       <section className=" max-w-2xl w-full h-86 rounded-3xl  mt-10 overflow-hidden ">
         {!isPending ? (
-          <div className="w-full h-full flex flex-col gap-4 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-300/40 dark:bg-neutral-900/50 border-dashed" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+          <div className="w-full h-full flex flex-col gap-4 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900/50 border-dashed" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
             {!file ? (
               <>
                 <div className="flex flex-col items-center justify-center">

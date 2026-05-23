@@ -17,22 +17,22 @@ const DocumentHeatmap = () => {
     darkTag: string;
   }> = {
     high: {
-      highlight: "rgba(239,68,68,0.18)",
+      highlight: "rgba(239,68,68,0.15)",
       highlightHover: "rgba(239,68,68,0.32)",
-      tag: "#f87171",
-      darkTag: "#dc2626",
+      tag: "#dc2626",
+      darkTag: "#991b1b",
     },
     medium: {
       highlight: "rgba(245,158,11,0.15)",
       highlightHover: "rgba(245,158,11,0.28)",
-      tag: "#fbbf24",
-      darkTag: "#d97706",
+      tag: "#d97706",
+      darkTag: "#92400e",
     },
     low: {
-      highlight: "rgba(16,185,129,0.12)",
+      highlight: "rgba(16,185,129,0.15)",
       highlightHover: "rgba(16,185,129,0.22)",
-      tag: "#34d399",
-      darkTag: "#059669",
+      tag: "#059669",
+      darkTag: "#064e3b",
     },
   };
   function buildSegments(doc: string, clauses: clause[]) {
@@ -101,7 +101,7 @@ const DocumentHeatmap = () => {
               onClick={() => setSelectedClause(clause.id)}
               style={{
                 background: isActive ? cfg.highlightHover : cfg.highlight,
-                borderBottom: `2px solid ${cfg.tag} `,
+                borderBottom: isActive ? `2px solid ${cfg.tag}` : "0px solid",
                 borderRadius: "3px",
                 padding: "1px 3px",
                 cursor: "pointer",
