@@ -1,17 +1,7 @@
 import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
-
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-
-import viteReact from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import tailwindcss from '@tailwindcss/vite'
-
-const config = defineConfig({
-  resolve: { tsconfigPaths: true },
-  plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()],
-  server: {
-    allowedHosts: ['amphigenously-lepidopterological-carmon.ngrok-free.dev'],
-  },
+export default defineConfig({
+  plugins: [tailwindcss(), tanstackRouter(), react()],
 })
-
-export default config
