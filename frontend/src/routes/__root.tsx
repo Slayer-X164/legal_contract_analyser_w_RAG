@@ -7,7 +7,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <div className="min-h-screen flex-col flex items-center overflow-x-hidden bg-[repeating-linear-gradient(45deg,#d4d4d4_0px,#d4d4d4_1px,transparent_1px,transparent_20px)] dark:bg-[repeating-linear-gradient(45deg,#262626_0px,#262626_1px,transparent_1px,transparent_20px)]">
+    <div className="min-h-screen flex-col flex items-center overflow-x-hidden bg-[repeating-linear-gradient(45deg,#d4d4d4_0px,#d4d4d4_1px,transparent_1px,transparent_20px)] dark:bg-[repeating-linear-gradient(45deg,#262626_0px,#262626_1px,transparent_1px,transparent_20px)] dark:bg-neutral-950 dark:text-neutral-100">
 
       <div
         id="navbar-frame"
