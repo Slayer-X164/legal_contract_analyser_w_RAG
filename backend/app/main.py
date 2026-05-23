@@ -10,7 +10,7 @@ app = FastAPI(
 )
 
 origins = [
-  settings.frontend_url
+  "https://clauseguard.siddx.in"
 ]
 
 app.add_middleware(
