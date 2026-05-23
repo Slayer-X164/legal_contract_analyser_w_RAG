@@ -8,7 +8,7 @@ export const useUploadFile = () => {
 
   return useMutation({
     mutationFn: async (formdata: FormData) => {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/analyse`, {
+      const res = await fetch("/api/analyse", {
         method: "POST",
         body: formdata,
       });
