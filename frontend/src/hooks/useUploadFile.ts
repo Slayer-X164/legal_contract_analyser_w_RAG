@@ -13,11 +13,10 @@ export const useUploadFile = () => {
         body: formdata,
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.detail);
+        throw new Error(`HTTP ${res.status}`);
       }
+      const data = await res.json();
 
       return data;
     },
