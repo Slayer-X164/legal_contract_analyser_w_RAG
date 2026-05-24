@@ -35,8 +35,8 @@ const RightDisplay = () => {
   return (
     <>
       {clause && (
-        <div className=' flex-1 gap-4 flex flex-col text-xs overflow-y-auto dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl'>
-          <div className="text-sm text-neutral-500 w-full flex justify-start items-center gap-1.5 border-b border-neutral-300 dark:border-neutral-800 px-4 py-2">
+        <div className='pb-4 flex-1 gap-4 flex flex-col text-xs overflow-y-auto dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl'>
+          <div className="text-sm text-neutral-500 w-full flex justify-center md:justify-start items-center gap-1.5 border-b border-neutral-300 dark:border-neutral-800 px-4 py-2">
             <FaRegHandPointer className="text-neutral-500/80"/>
             <h3>Click a clause to see more details</h3>
           </div>
