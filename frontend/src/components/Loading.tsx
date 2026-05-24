@@ -57,7 +57,7 @@ export default function Loading({ fileName }: AnalyzingStateProps) {
   };
 
   return (
-    <div className="rounded-3xl border-2 border-neutral-300 dark:border-neutral-800 flex flex-col items-center justify-center gap-4 w-full h-full px-10  bg-neutral-300 dark:bg-neutral-900">
+    <div className="rounded-3xl border-2 border-neutral-400/50 dark:border-neutral-800 flex flex-col items-center justify-center gap-4 w-full h-full px-10  bg-neutral-300 dark:bg-neutral-900">
 
       {/* Spinner */}
       <div className="relative w-8 h-8">

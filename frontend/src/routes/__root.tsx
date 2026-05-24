@@ -16,9 +16,10 @@ function RootComponent() {
         <Navbar />
       </div>
 
-      <main className="max-w-7xl md:h-[calc(100vh-57px)] w-full overflow-x-hidden p-3 md:px-4 border-x border-neutral-400/40 dark:border-neutral-800 bg-neutral-200 dark:bg-neutral-950">
+      <main className="max-w-7xl  md:h-[calc(100vh-57px)] w-full overflow-x-hidden p-3 md:px-4 border-x border-neutral-400/40 dark:border-neutral-800 bg-neutral-200 dark:bg-neutral-950">
         <Toaster/>
         <Outlet />
+        
       </main>
     </div>
   )
