@@ -49,7 +49,7 @@ const DragAndDrop = () => {
               <>
                 <a href="/Lease_Agreement.docx"
                   download
-                   className="absolute border active:scale-95 duration-200 transition-all right-2 top-2 text-[12px] p-2 border-neutral-400/50 shadow-xl shadow-neutral-400/10 bg-neutral-200 text-neutral-600  dark:text-neutral-500 rounded-xl flex items-center gap-1">
+                   className="absolute border active:scale-95 duration-200 transition-all right-2 top-2 text-[12px] p-2 border-neutral-400/50 dark:border-neutral-600  shadow-xl shadow-neutral-400/10 dark:shadow-neutral-900 bg-neutral-200 dark:bg-neutral-800 text-neutral-600  dark:text-neutral-400 rounded-xl flex items-center gap-1">
                   <HiOutlineDownload className="text-sm" />Download demo contract and test
                 </a>
                 <div className="flex flex-col items-center justify-center">
