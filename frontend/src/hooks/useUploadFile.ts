@@ -16,8 +16,7 @@ export const useUploadFile = () => {
       });
 
       if (!res.ok) {
-        toast.error(`error:${res.status}, message:${res.statusText}`)
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error(`${res.status == 413 ? "file bigger than 3MB!" : res.statusText}`);
       }
       const data = await res.json();
 

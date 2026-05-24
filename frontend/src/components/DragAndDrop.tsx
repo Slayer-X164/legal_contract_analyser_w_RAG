@@ -44,7 +44,7 @@ const DragAndDrop = () => {
     <>
       <section className=" max-w-2xl w-full h-86 rounded-3xl  mt-10 overflow-hidden ">
         {!isPending ? (
-          <div className="w-full h-full flex flex-col gap-4 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900/50 border-dashed" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+          <div className="w-full h-full flex flex-col gap-4 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-300 dark:bg-neutral-900/50 border-dashed " onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
             {!file ? (
               <>
                 <div className="flex flex-col items-center justify-center">
@@ -52,7 +52,9 @@ const DragAndDrop = () => {
                     <RxDownload className="text-neutral-400 text-lg" />
                   </div>
                   <h2 className="text-md font-semibold text-neutral-600">Drop your contract here</h2>
+                  <h4 className="text-sm text-neutral-500 font-mono pt-0.5 pb-2">Maximum Size:3MB</h4>
                   <h3 className="text-sm text-neutral-500 font-mono pt-0.5">.PDF .DOCX .TXT</h3>
+
                 </div>
                 <div className="flex items-center justify-center text-neutral-600 gap-2">
                   <div className="w-30"> <hr /></div>
