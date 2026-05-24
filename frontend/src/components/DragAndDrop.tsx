@@ -5,7 +5,7 @@ import Loading from "./Loading"
 import { useUploadFile } from "#/hooks/useUploadFile"
 import { useDocumentNameStore } from "#/store/useStore"
 import { IoTrashOutline } from "react-icons/io5"
-
+import { HiOutlineDownload } from "react-icons/hi";
 const DragAndDrop = () => {
   const [file, setFile] = useState<File | null>()
   const { mutate, isPending } = useUploadFile()
@@ -44,13 +44,16 @@ const DragAndDrop = () => {
     <>
       <section className=" max-w-2xl w-full h-95 md:h-86 rounded-3xl  mt-10 md:mt-6 overflow-hidden ">
         {!isPending ? (
-          <div className="w-full  h-full flex flex-col gap-6 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-300 dark:bg-neutral-900/50 border-dashed " onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+          <div className="w-full relative h-full flex flex-col gap-6 items-center justify-center rounded-3xl border-2 border-neutral-400 dark:border-neutral-700 bg-neutral-300 dark:bg-neutral-900/50 border-dashed " onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
             {!file ? (
               <>
+                <a href="/Lease_Agreement.docx"
+                  download
+                   className="absolute border active:scale-95 duration-200 transition-all right-2 top-2 text-[12px] p-2 border-neutral-400/50 shadow-xl shadow-neutral-400/10 bg-neutral-200 text-neutral-600  dark:text-neutral-500 rounded-xl flex items-center gap-1">
+                  <HiOutlineDownload className="text-sm" />Download demo contract and test
+                </a>
                 <div className="flex flex-col items-center justify-center">
-                  <div className="px-2 py-1.5 bg-neutral-700 rounded-lg mb-2">
-                    <RxDownload className="text-neutral-400 text-lg" />
-                  </div>
+
                   <h2 className="text-md font-semibold text-neutral-600">Drop your contract here</h2>
                   <h4 className="text-sm text-neutral-500 font-mono pt-0.5 pb-2">Maximum Size:3MB</h4>
                   <h3 className="text-sm text-neutral-500 font-mono pt-0.5">.PDF .DOCX .TXT</h3>
@@ -77,11 +80,11 @@ const DragAndDrop = () => {
                 </div>
                 <div className="flex items-center gap-2 ">
                   <button onClick={handleFileUpload} className="w-40 bg-emerald-700  text-neutral-50 text-center p-2 shadow-2xl shadow-emerald-500 dark:shadow-emerald-500/50 dark:bg-emerald-800 rounded-xl hover:bg-emerald-900 active:scale-95 transition-all duration-300 cursor-pointer">
-                  <h3>Scan & Analyse</h3>
-                </button>
-                <div onClick={handleRemoveFile} className="text-xl bg-red-600/15 p-2.5 text-red-600 rounded-xl cursor-pointer">
-                  <IoTrashOutline />
-                </div>
+                    <h3>Scan & Analyse</h3>
+                  </button>
+                  <div onClick={handleRemoveFile} className="text-xl bg-red-600/15 p-2.5 text-red-600 rounded-xl cursor-pointer">
+                    <IoTrashOutline />
+                  </div>
                 </div>
               </div>
             )}
