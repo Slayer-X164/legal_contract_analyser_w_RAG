@@ -10,6 +10,9 @@ class Settings(BaseSettings):
   supabase_url:str
   supabase_service_role_key:str
 
+  upstash_redis_rest_url:str
+  upstash_redis_rest_token:str
+
   class Config:
     env_file = ".env"
     env_file_encoding ="utf-8"
