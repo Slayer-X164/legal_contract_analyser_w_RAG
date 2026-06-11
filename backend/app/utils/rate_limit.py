@@ -9,7 +9,7 @@ redis_client = Redis(
 
 rate_limiter = Ratelimit(
   redis=redis_client,
-  limiter=FixedWindow(max_requests=2, window=60)
+  limiter=FixedWindow(max_requests=3, window=60)
 )
 
 def rate_checker(request: Request):

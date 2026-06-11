@@ -1,6 +1,6 @@
 services:
   backend:
-    image: slayerx164/backend:latest
+    image: slayerx164/clauseguard-backend:latest
     container_name: clauseguard-backend
 
     ports:
